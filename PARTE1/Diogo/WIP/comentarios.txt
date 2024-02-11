@@ -1,0 +1,2 @@
+
+No distDatas, da dando erro em TODOS os setData(dt)
