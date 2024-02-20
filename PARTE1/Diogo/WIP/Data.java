@@ -49,10 +49,9 @@ public class Data {
 
   }
 
-  public void SetData(Data dt) {
-    dia = dt.getData('d');
-    mes = dt.getData('m');
-    ano = dt.getData('a');
+  public void setData(Data dt) {
+
+    SetData(dt.getData('d'), dt.getData('m'), dt.getData('a'));
   }
 
   public void SetData(int d, int m, int a) {
@@ -173,12 +172,23 @@ public class Data {
       }
     }
 
-    while (!(Dcont.equals(Dfim))) {
+    while ((Dcont.getData('d') != Dfim.getData('d')) || (Dcont.getData('m') != Dfim.getData('m'))
+        || (Dcont.getData('a') != Dfim.getData('a'))) {
       dist++;
       Dcont.incrData();
-      if (dist == empresa.limite())
+      if (dist == Empresa.limite() / 100)
         return -1;
     }
     return dist;
+  }
+
+  public static boolean ehCronologico(Data d1, Data d2) {
+    Data p = new Data(d1);
+    int dp = Data.distDatas(p, d2);
+    p.incrData();
+    if (Data.distDatas(p, d2) < dp)
+      return true;
+    else
+      return false;
   }
 }
