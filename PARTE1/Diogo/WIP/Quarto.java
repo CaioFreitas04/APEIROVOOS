@@ -2,39 +2,77 @@ import java.util.ArrayList;
 
 public class Quarto {
 
-  private float valorDiaria;
-  private float valorDesconto;
-  private float valorDiariacomDesconto;
+  private double valorDiaria;
+  private double valorDesconto;
+  private double valorDiariacomDesconto;
   private int qtdPessoas;
-  private static ArrayList diasCheckin = new ArrayList();
-  private static ArrayList diasCheckout = new ArrayList();
+  private Data diasCheckin[];
+  private Data diasCheckout[];
+  private int numero;
 
-  public Quarto(float valorDiariaIN, int qtdPessoasIN) {
+  public Quarto(double valorDiariaIN, int qtdPessoasIN) {
     valorDiaria = valorDiariaIN;
     qtdPessoas = qtdPessoasIN;
-    valorDesconto = 0;
-    valorDesconto = valorDiaria;
+    valorDesconto = 1;
+    valorDiariacomDesconto = valorDiaria;
+
+  diasCheckin = new Data[0];
+  diasCheckout = new Data[0];
+}
+
+  public int getNumero() {
+    return numero;
   }
-  public float getValorDiaria() {return valorDiaria;}
-  public float getValorDesconto() {return valorDesconto;}
-  public float getValorDiariacomDesconto() {return valorDiariacomDesconto;}
-  public int getQtdPessoas() {return qtdPessoas;}
 
+  public double getValorDiaria() {
+    return valorDiaria;
+  }
 
-  
+  public double getValorDesconto() {
+    return valorDesconto;
+  }
 
-  public static boolean estaLivreEmTalDia(Data dia) {
-    Data p = new Data(dia);
+  public double getValorDiariacomDesconto() {
+    return valorDiariacomDesconto;
+  }
 
-    if (diasCheckin.contains(p) || diasCheckout.contains(p))
-      return false;
+  public int getQtdPessoas() {
+    return qtdPessoas;
+  }
+  public Data[] getDiasCheckin() {return diasCheckin;}
+  public Data[] getDiasCheckout() {return diasCheckout;}
 
+  public void setValorDiaria(double valorDiariaIN) {
+    valorDiaria = valorDiariaIN;
+  }
+  public void setNumero(int numeroIN) {
+    numero = numeroIN;
+  }
+
+  public boolean ehPossivelReservar(Reserva IN) {
+
+    Data p = new Data(IN.getDiaCheckin());
+
+    int cont = Data.distDatas(p, IN.getDiaCheckout());
     int max = empresa.limite();
-    for (int i = 0; i < max; i++) {
 
-      if (diasCheckin.contains(p))
+    for (int i = 0; i < cont; i++) {
+
+      if (VETOR.contem(diasCheckin, p))
+        return false;
+      if (VETOR.contem(diasCheckout, p))
+        return false;
+
+      p.incrData();
+
+    }
+
+    p.setData(IN.getDiaCheckout());
+    for (int i = 0; i < 100; i++) {
+
+      if (VETOR.contem(diasCheckin, p))
         return true;
-      if (diasCheckout.contains(p))
+      if (VETOR.contem(diasCheckout, p))
         return false;
 
       p.incrData();
@@ -43,23 +81,23 @@ public class Quarto {
     return true;
   }
 
-  public int addReserva(reserva IN) {
+  public int addReserva(Reserva IN) {
 
-    if (estaLivreEmTalDia(IN.getDiaCheckin()) && estaLivreEmTalDia(IN.getDiaCheckout())) {
-      diasCheckin.add(IN.getDiaCheckin());
-      diasCheckout.add(IN.getDiaCheckout());
+    if (ehPossivelReservar(IN)) {
+      diasCheckin = VETOR.add(diasCheckin, IN.getDiaCheckin());
+      diasCheckout = VETOR.add(diasCheckout, IN.getDiaCheckout());
       return 0;
-    }
-    return 1;
+    } else
+      return 1;
   }
 
-  public void removeReserva(reserva IN) {
+  public void removeReserva(Reserva IN) {
 
-    diasCheckin.remove(IN.getDiaCheckin());
-    diasCheckout.remove(IN.getDiaCheckout());
+    diasCheckin = VETOR.remove(diasCheckin, IN.getDiaCheckin());
+    diasCheckout = VETOR.remove(diasCheckout, IN.getDiaCheckout());
   }
 
-  public void criar_Promocao(float valorDescontoIN) {
+  public void criarPromocao(double valorDescontoIN) {
     valorDesconto = valorDescontoIN;
     valorDiariacomDesconto = valorDiaria * valorDescontoIN;
   }
