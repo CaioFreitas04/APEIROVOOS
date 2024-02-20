@@ -2,15 +2,21 @@ public class Reserva {
   private Quarto quarto_escolhido;
   private Data diaCheckin;
   private Data diaCheckout;
-  float preco;
-
-  public Reserva(Quarto quarto_escolhidoIN, Data diaCheckinIN, Data diaCheckoutIN) {
-    quarto_escolhido = quarto_escolhidoIN;
+  private double preco;
+  private int NumeroQuarto;
+  
+  public Reserva(Data diaCheckinIN, Data diaCheckoutIN) {
     diaCheckin = new Data(diaCheckinIN);
     diaCheckout = new Data(diaCheckoutIN);
 
     preco = quarto_escolhido.getValorDiaria() * Data.distDatas(diaCheckin, diaCheckout);
-    ;
+  }
+  public void setQuarto(Quarto quarto_escolhidoIN) {
+    quarto_escolhido = quarto_escolhidoIN;
+    NumeroQuarto = quarto_escolhido.getNumero();
+  }
+  public void setPreco(Quarto quarto_escolhidoIN) {
+    preco = quarto_escolhido.getValorDiariacomDesconto() * Data.distDatas(diaCheckin, diaCheckout);
   }
 
   public Data getDiaCheckin() {
@@ -25,8 +31,12 @@ public class Reserva {
     return quarto_escolhido;
   }
 
-  public float getPreco() {
+  public double getPreco() {
     return preco;
+  }
+
+  public int getNumeroQuarto() {
+    return NumeroQuarto;
   }
 
 }
