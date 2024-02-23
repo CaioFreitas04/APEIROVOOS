@@ -34,8 +34,6 @@ public class Pessoa {
 		if(!(input.matches("([0-9]{3}\\.){2}([0-9]{3}-[0-9]{2})") || input.matches("[0-9]{11}")))
 			return false;
 
-
-
 		j = 0;
 		for(i = 0; i < untreatedcharray.length; i++) {
 			if(untreatedcharray[i] > 47 && (untreatedcharray[i] < 58)) {
