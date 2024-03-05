@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Cliente extends Pessoa {
 	
 	/*
@@ -13,7 +15,8 @@ public class Cliente extends Pessoa {
 	private int compras;
 	private boolean validCPF;
 	private String email;
-	
+	private ArrayList compraArray;
+
 	public Cliente(String nomein, String CPFin, String addrin, Data nascin, Data hoje, String emailin) {
 		this.setNome(nomein);
 		
@@ -35,11 +38,13 @@ public class Cliente extends Pessoa {
 		this.VIP = false;
 
 		this.email = emailin;
+
+		compraArray = new ArrayList();
 	}
 	
 	public boolean resetCPF(String CPFin) {
 		if(this.validCPF) {
-			return;
+			return true;
 		}
 		else {
 			if(this.setCPF(CPFin)) {
@@ -53,9 +58,20 @@ public class Cliente extends Pessoa {
 		}
 	}
 	
+	public void adicionarAoCarrinho(Reserva in) {
+		if(!validCPF)
+			return;
+		this.compraArray.add(in);
+	}
+
+	//repetir para Passagens;
+
 	public void comprar() {
-		if(this.validCPF)
-			this.compras++;
+		if(!this.validCPF)
+			return;
+		
+		compraArray.clear();
+		this.compras++;	
 	}
 		
 	public void makeVIP(Data hoje) {
@@ -78,11 +94,11 @@ public class Cliente extends Pessoa {
 		return this.email;
 	}
 
-	public Hotel pesquisarHotel(ArrayList<Hotel> hotelList, Hotel hotelIn) {
+	/*public Hotel pesquisarHotel(ArrayList<Hotel> hotelList, Hotel hotelIn) {
 		if(!hotelList.contains(hotelIn)) {
 			return null;
 		}
 		else 
 			return hotelList.get(hotelIn);
-	}
+	}*/
 }
