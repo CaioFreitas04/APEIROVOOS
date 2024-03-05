@@ -1,7 +1,6 @@
 public class Passagem {
 	private voo Voo;
 	private float preco;
-	private float precoPrimeiraClasse;
 
 	public Passagem(voo vooin, float precoin, float precoPrimin) {
 		this.Voo = vooin;
@@ -19,7 +18,4 @@ public class Passagem {
 		return this.Preco;
 	}
 
-	public float getPrecoPrimeiraClasse() {
-		return this.precoPrimeiraClasse;
-	}
 }

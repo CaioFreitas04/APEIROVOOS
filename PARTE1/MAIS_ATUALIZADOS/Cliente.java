@@ -83,7 +83,6 @@ public class Cliente extends Pessoa {
 		if(!this.validCPF)
 			return;
 		
-		compraArray.clear();
 		this.compras++;	
 	}
 		
@@ -92,6 +91,10 @@ public class Cliente extends Pessoa {
 			this.VIP = true;
 			VIPData = hoje;
 		}
+	}
+
+	public boolean isVIP() {
+		return this.VIP;
 	}
 	
 	public float getVIPDesc() {
