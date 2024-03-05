@@ -17,6 +17,15 @@ public class Cliente extends Pessoa {
 	private String email;
 	private ArrayList compraArray;
 
+	public Cliente() {
+		this.validCPF = false;
+		this.setNome("DEVMODE");
+		this.setAddr("DEVMODE");
+		this.compras = 74;
+		this.VIP = false;
+		this.email = "DEVMODE@APEIROVOOS.COM";
+	}
+
 	public Cliente(String nomein, String CPFin, String addrin, Data nascin, Data hoje, String emailin) {
 		this.setNome(nomein);
 		
