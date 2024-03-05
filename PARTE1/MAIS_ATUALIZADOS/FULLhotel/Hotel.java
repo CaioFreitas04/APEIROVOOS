@@ -21,6 +21,7 @@ public class Hotel {
   private Hora HorarioCheckin;
   private Hora HorarioCheckout;
   private String Slogan;
+  private String Descricao;
 
   private Quarto StdQuartos1pessoa[];
   private Quarto StdQuartos2pessoa[];
@@ -30,14 +31,15 @@ public class Hotel {
   private Quarto PremiumQuartos2pessoa[];
   private Quarto PremiumQuartos3pessoa[];
 
-  public Hotel(String CNPJIN, String Nome_OficialIN) {
+  private Cidade city;
+
+  public Hotel(String CNPJIN, String Nome_OficialIN, Cidade cityIN) {
     CNPJ = new String(CNPJIN);
     Nome_Oficial = new String(Nome_OficialIN);
+    city = cityIN;
   }
 
-  public void setHotel(String Nome_OficialIN, String Nome_de_DivulgacaoIN, Data Data_de_FundacaoIN, String EnderecoIN,
-      int EstrelasIN, boolean AceitaPetIN, boolean AceitaCancelamentoIN, Hora HorarioCheckinIN, Hora HorarioCheckouINt,
-      String SloganIN) {
+  public void setHotel(String Nome_OficialIN, String Nome_de_DivulgacaoIN, Data Data_de_FundacaoIN, String EnderecoIN, int EstrelasIN, boolean AceitaPetIN, boolean AceitaCancelamentoIN, Hora HorarioCheckinIN, Hora HorarioCheckouINt, String SloganIN, String DescricaoIN) {
     Nome_Oficial = Nome_OficialIN;
     Nome_de_Divulgacao = Nome_de_DivulgacaoIN;
     Data_de_Fundacao = Data_de_FundacaoIN;
@@ -48,6 +50,7 @@ public class Hotel {
     HorarioCheckin = HorarioCheckinIN;
     HorarioCheckout = HorarioCheckouINt;
     Slogan = SloganIN;
+    Descricao = DescricaoIN;
 
   }
 
@@ -105,7 +108,7 @@ public class Hotel {
     return CNPJ;
   }
 
-  public String getNome_Oficial() {
+  public String getNomeOficial() {
     return Nome_Oficial;
   }
 
@@ -175,6 +178,14 @@ public class Hotel {
 
   public String getSlogan() {
     return Slogan;
+  }
+
+  public String getDescricao() {
+    return Descricao;
+  }
+  
+  public Cidade getCity() {
+    return city;
   }
 
   public int qtdQuartosDisponiveisParaReserva(Reserva r, String type, int qtdPessoas) {

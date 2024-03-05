@@ -4,6 +4,7 @@ public class voo {
   private final Aeroporto origem;
   private Aeroporto destino;
   private final String codigo;
+  private final CompAerea companhia;
 
   private Hora tempoDeVoo;
   private Hora HoraDePartida;
@@ -19,21 +20,22 @@ public class voo {
   private double precoEcon;
   private double precoFirstClass;
 
-  public voo(String codigoIN, Aeroporto origemIN, Trecho rotaIN, Hora tempoVooIN, Hora PartidaIN, Data diaPartidaIN) {
+  public voo(String codigoIN, Trecho rotaIN, Hora tempoVooIN, Hora PartidaIN, Data diaPartidaIN, CompAerea oferecedor) {
 
     int signal = 0;
     Hora controle = new Hora(0, 0, 0);
 
     codigo = codigoIN;
+    companhia = oferecedor;
 
-    origem = origemIN;
+    origem = rotaIN.getOrigem();
     destino = rotaIN.getDestino();
     rota = rotaIN;
 
     tempoDeVoo = new Hora(tempoVooIN);
     HoraDePartida = new Hora(PartidaIN);
     HoraDeChegada = new Hora(0, 0, 0);
-    signal = Hora.calcHoraH(HoraDePartida, (destino.getFuso() - origemIN.getFuso()), HoraDeChegada);
+    signal = Hora.calcHoraH(HoraDePartida, (destino.getFuso() - rotaIN.getOrigem().getFuso()), HoraDeChegada);
 
     signal += Hora.somaHoras(HoraDeChegada, tempoVooIN, HoraDeChegada);
 
@@ -63,6 +65,9 @@ public class voo {
 
   public String getCodigo() {
     return codigo;
+  }
+  public CompAerea getComp() {
+    return companhia;
   }
 
   public Aeroporto getOrigem() {
