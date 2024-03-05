@@ -58,13 +58,17 @@ public class Cliente extends Pessoa {
 		}
 	}
 	
-	public void adicionarAoCarrinho(Reserva in) {
+	public void adicionarAoCarrinho(Reserva in) {	//para reservas;
 		if(!validCPF)
 			return;
 		this.compraArray.add(in);
 	}
 
-	//repetir para Passagens;
+	public void adicionarAoCarrinho(Passagem in) {	//para passagens;
+		if(!validCPF)
+			return;
+		this.compraArray.add(in);
+	}
 
 	public void comprar() {
 		if(!this.validCPF)
