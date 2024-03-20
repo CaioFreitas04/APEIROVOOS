@@ -2,7 +2,7 @@ public class Passagem {
 	private voo Voo;
 	private float preco;
 
-	public Passagem(voo vooin, float precoin, float precoPrimin) {
+	public Passagem(voo vooin, float precoin) {
 		this.Voo = vooin;
 		if(precoin > 0)
 			this.preco = precoin;
