@@ -6,8 +6,6 @@ public class Passagem {
 		this.Voo = vooin;
 		if(precoin > 0)
 			this.preco = precoin;
-		if(precoPrimin > 0)
-			this.precoPrimeiraClasse = precoPrimin;
 	}
 
 	public voo getVoo() {
