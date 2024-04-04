@@ -3,20 +3,19 @@ import java.util.*
 //essa classe serve de template para todos os DAOs. O resto será
 //feito em uma hora mais oportuna;
 
+
+//NOTA! TODOS OS DAOs SERÃO REESCRITOS POSTERIORMENTE PARA A INTEGRAÇÃO
+//COM O BANCO DE DADOS!
+
 public class DadosCliente {
 
-    private ArrayList<Cliente> dataArray;
+    private static ArrayList<Cliente> dataArray;
 
-    
-    public DadosCliente() {
-        dataArray = new ArrayList<Cliente>;
+    public static void add(Cliente c) {
+    	this.dataArray.add(c);
     }
 
-    public void add(Cliente c) {
-        this.dataArray.add(c);
-    }
-
-    public Cliente search(String CPF) {
+    public static Cliente search(String CPF) {
         Cliente c = null;
 
         for(Cliente s : this.dataArray) {
@@ -26,10 +25,10 @@ public class DadosCliente {
             }
         }
 
-        return c
+        return c;
     }
 
-    public boolean rem(String CPF) {
+    public static boolean rem(String CPF) {
         Cliente c = this.search(CPF);
         
         if(f != null) {
@@ -41,10 +40,16 @@ public class DadosCliente {
         }
     }
 
-    public Cliente access(int num) {
-        if(num >= 0 && num < this.dataArray.length())
-            return this.dataArray.get(num);
-        else
-            return null;
+    public static ArrayList<Cliente> getArray() {
+    	return dataArray;
     }
+
+    public static void commit() {
+    	return;
+    } //TODO: função que coloca dados no banco;
+
+    public static boolean pull() {
+    	return false;
+    } //TODO: função que puxa dados no banco;
+
 }
