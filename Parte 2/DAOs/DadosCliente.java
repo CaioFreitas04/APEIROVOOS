@@ -12,13 +12,13 @@ public class DadosCliente {
     private static ArrayList<Cliente> dataArray;
 
     public static void add(Cliente c) {
-    	this.dataArray.add(c);
+    	dataArray.add(c);
     }
 
     public static Cliente search(String CPF) {
         Cliente c = null;
 
-        for(Cliente s : this.dataArray) {
+        for(Cliente s : dataArray) {
             if(s.getCPF().equals(CPF)) {
                 c = s;
                 break;
@@ -29,10 +29,10 @@ public class DadosCliente {
     }
 
     public static boolean rem(String CPF) {
-        Cliente c = this.search(CPF);
+        Cliente c = search(CPF);
         
         if(f != null) {
-            this.dataArray.remove(c);
+            dataArray.remove(c);
             return true;
         }
         else {
