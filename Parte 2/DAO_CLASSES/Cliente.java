@@ -107,7 +107,10 @@ public class Cliente extends Pessoa {
 		VIPDesc = in;
 	}
 	
-
+	public String getCompras() {
+		return compras;
+	}
+	
 	public String getEmail() {
 		return this.email;
 	}
