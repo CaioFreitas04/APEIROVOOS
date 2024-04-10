@@ -123,7 +123,7 @@ public class Cliente extends Pessoa {
 		VIPDesc = in;
 	}
 	
-	public String getCompras() {
+	public int getCompras() {
 		return compras;
 	}
 	
