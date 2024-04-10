@@ -52,6 +52,22 @@ public class Cliente extends Pessoa {
 
     if(validCPF) Dados.addCliente(this);
 	}
+
+	//esse construtor é para o uso do banco de dados, para "reconstruir" o cliente depois que este
+	//for puxado do banco. Como não tem todos os dados, é inapropriado para o uso no programa;
+	public Cliente(String nomein, String CPFin, String addrin, boolean VIPin, int comprasin, String emailin) {
+		this.setNome(nomein);
+		
+		this.setCPF(CPFin);
+		
+		this.setAddr(addrin);
+		
+		this.compras = comprasin;
+		
+		this.VIP = VIPin;
+
+		this.email = emailin;
+	}
 	
 	public boolean resetCPF(String CPFin) {
 		if(this.validCPF) {
