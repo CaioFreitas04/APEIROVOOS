@@ -1,7 +1,8 @@
 package vision;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Empresa {
+public class Empresa implements Serializable {
 
   private static Data today;
   private static float comissao_por_passagem_global;
