@@ -4,11 +4,15 @@ public class Reserva {
   private Data diaCheckin;
   private Data diaCheckout;
   private double preco;
+  private int Cod;
+  private static int QtdTotal = 0;
   private int NumeroQuarto;
   
   public Reserva(Data diaCheckinIN, Data diaCheckoutIN) {
     diaCheckin = new Data(diaCheckinIN);
     diaCheckout = new Data(diaCheckoutIN);
+    Cod = QtdTotal;
+    QtdTotal++;
   }
   public void setQuarto(Quarto quarto_escolhidoIN) {
     quarto_escolhido = quarto_escolhidoIN;
