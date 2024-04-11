@@ -1,0 +1,48 @@
+
+	//Codigos injetados:
+
+Hora temp14 = new Hora(1, 30, 0)
+Hora temp12 = new Hora(0, 5, 30)
+Hora temp21 = new Hora(0, 18, 0)
+Hora temp24 = new Hora(2, 45, 0)
+Hora temp43 = new Hora(7, 30, 0)
+Hora temp44 = new Hora(0, 27, 0)
+
+CompAerea Butia = new CompAerea("11111111", "Butia Comp. airBus", "Butia AirLines", new Data(12, 11, 1998));
+
+
+
+Data dh = new Data(11, 4, 2024)
+Data dn = new Data(15, 8, 1256)
+Cliente DevMod = new Cliente(tals)
+
+Cidade c1 = new Cidade("Uberlandia", Brazil", -4);
+Cidade c2 = new Cidade("Araguari", Brazil", -4);
+Cidade c3 = new Cidade("Paris", "Europa", 0);
+Cidade c4 = new Cidade("Sao Paulo", "Brazil", 0);
+DadosCidades.add(c1);
+DadosCidades.add(c2);
+DadosCidades.add(c3);
+
+Aeroporto c1A = new Aeroporto("Aeroporto Municipal de Uberlandia", c1);
+Aeroporto c2A = new Aeroporto("Fazenda do seu Zé", c2);
+Aeroporto c3A = new Aeroporto("Paris-Charles de Gaulle", c3);
+Aeroporto c4A = new Aeroporto("Guarulhos", c4);
+Aeroporto c4B = new Aeroporto("ViraCopos", c4);
+
+Trecho T12a = newTrecho(c2A, temp12, "Aerovia (Pista de Terra) Uberlandia, MG - Fazenda Sol nascente, Araguari, MG");
+Trecho T14 = c1A.newTrecho(c4A, temp14, "Aerovia Uberlandia, MG - São Paulo, SP (Guarulhos)");
+Trecho T12h = c1A.newTrecho(c2A, temp21, "Aerovia2(Helicópteros) Uberlandia, MG - Fazenda Sol nascente, Araguari, MG");
+Trecho T43 = c4A.newTrecho(c3A, temp43, "Aerovia Guarulhos (SP) - Paris-Charles de Gaulle, França");
+Trecho T44 = c4A.newTrecho(c4B, temp44, "Aerovia Guarulhos (SP) - Viracopos (SP)");
+Trecho T42 = c4B.newTrecho(c2A, temp24, "Aerovia Viracopos (SP) - Araguari (MG)");
+
+voo UbAr1 = new Voo(T12a, T12a.getTempo, c1A, "Monomoor 337");
+voo ArUb1 = new Voo(T12a, T12a.getTempo, c2A, "Monomoor 337");
+voo UbAr2 = new Voo(T12b, T12b.getTempo, c1A, "Freebird Zacarias Rocha");
+
+voo ArVC = new voo(T42, T42.getTempo, c2A, "Irmãos Carrijo Airlines")
+voo VCAr = new voo
+
+
+//Em Trecho, no construtor, destinoIN.addConexao(this);
