@@ -3,20 +3,50 @@ package vision;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
-public class InterfaceFinCompra extends JInternalFrame {
+public class InterfaceFinComp extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
-
-
+	private Cliente ClienteX;
 
 	/**
 	 * Create the frame.
 	 */
-	public InterfaceFinCompra() {
-		setTitle("Finalizar Compra");
-		setBounds(100, 100, 450, 300);
+	public InterfaceFinComp(Cliente X) {
+		setBounds(100, 100, 450, 197);
+		getContentPane().setLayout(null);
+		ClienteX = X;
+		
+		JButton JbNão = new JButton("Não");
+		JbNão.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		JbNão.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		JbNão.setBounds(28, 91, 111, 38);
+		getContentPane().add(JbNão);
+		
+		JButton JbSim = new JButton("Sim");
+		JbSim.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		JbSim.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		JbSim.setBounds(281, 91, 111, 38);
+		getContentPane().add(JbSim);
+		
+		JLabel lblNewLabel = new JLabel("Tem Certeza que Gostaria de Finalizar");
+		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 19));
+		lblNewLabel.setBounds(52, 30, 357, 29);
+		getContentPane().add(lblNewLabel);
 
 	}
-
 }
