@@ -16,14 +16,18 @@ public class InterfaceRemCompra extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private JMenu JmReserva;
 	private Cliente ClienteX;
+	private ArryList<Reserva> ReservaX;
+	private ArryList<Passagem> PassagemX;
 	
 
 	/**
 	 * Create the frame.
 	 */
 	public InterfaceRemCompra(Cliente X) {
+		setTitle("Remover item no Carrinho");
 		setTitle("Remover Compra");
 		ClienteX = X;
+		ReservaX = new ArrayList<Reserva>;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		
@@ -47,24 +51,58 @@ public class InterfaceRemCompra extends JInternalFrame {
 		JbVoltar.setBounds(26, 205, 90, 28);
 		getContentPane().add(JbVoltar);
 		
-		/*
-		ArrayList<JMenuItem> Apeiro = new ArrayList<JMenuItem>();
-		ArrayList<JMenuItem> Apeiroc = new ArrayList<JMenuItem>();
+		JButton JbRemove = new JButton("Remover");
+		JbRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+				
+			}
+		});
+		JbRemove.setBounds(307, 205, 90, 28);
+		getContentPane().add(JbRemove);
 		
-		for( i = 0;i<Hoteis.size();i++) {
-		 			
-		 			Apeiro.add(new JMenuItem(Hoteis.get(i).getNome_de_Divulgacao()));
-		 			JmSeleção.add(Apeiro.get(i));
-		 			Apeiro.get(i).addActionListener(new ActionListener() {
-		 				public void actionPerformed(ActionEvent e) {
-		 					HotelZ = Hoteis.get(i);
-		 					JmSeleção.setText(Hoteis.get(i).getNome_de_Divulgacao());
-							
-		 				}
-		 			});
-		 			
-		 			}
-		*/
 		
+		ReservaX = CidadeX.getReservas()/
+		PassagemX = CidadeX.getPassagens();
+		
+		if(ReservaX != null) {
+			if(PassagemX != null){
+			ArrayList<JMenuItem> Apeiro = new ArrayList<JMenuItem>();
+			ArrayList<JMenuItem> Apeiroc = new ArrayList<JMenuItem>();
+		
+			for( i = 0;i<ReservaX.size();i++) {
+			 			
+			 			Apeiro.add(new JMenuItem(ReservaX.get(i).()));
+			 			JmReserva.add(Apeiro.get(i));
+			 			Apeiro.get(i).addActionListener(new ActionListener() {
+			 				public void actionPerformed(ActionEvent e) {
+			 					JmReserva.setText(ReservaX.get(i).getNome_de_Divulgacao());
+								
+			 				}
+			 			});
+			 			
+			 			}
+			for( i = 0;i<PassagemX.size();i++) {
+	 			
+	 			Apeiro.add(new JMenuItem(PassagemX.get(i).()));
+	 			JmPassagens.add(Apeiroc.get(i));
+	 			Apeiroc.get(i).addActionListener(new ActionListener() {
+	 				public void actionPerformed(ActionEvent e) {
+	 					JmPassagens.setText(PassagemX.get(i).getNome_de_Divulgacao());
+						
+	 				}
+	 			});
+	 			
+	 			}
+			
+			}
+		}
+		
+	}
+}
 	}
 }
