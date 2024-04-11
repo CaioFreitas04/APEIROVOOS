@@ -1,8 +1,7 @@
 package vision;
 import java.util.ArrayList;
-import java.io.Serializable;
 
-public class Hotel implements Serializable {
+public class Hotel {
 
   private String CNPJ;
   private String Nome_Oficial;

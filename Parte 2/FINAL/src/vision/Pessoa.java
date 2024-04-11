@@ -1,7 +1,5 @@
 package vision;
-import java.io.Serializable;
-
-public class Pessoa implements Serializable {
+public class Pessoa {
 	
 	private String nome;
 	private String CPF;

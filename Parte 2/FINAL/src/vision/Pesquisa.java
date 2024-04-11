@@ -1,7 +1,5 @@
 package vision;
-import java.io.Serializable;
-
-public class Pesquisa implements Serializable{
+public class Pesquisa{
 
   private Hotel HotelBuscado;
   private Cidade DestinoBuscado;
@@ -15,14 +13,12 @@ public class Pesquisa implements Serializable{
     DataChegadaBuscada = DataChegadaBuscadaIN;
     DataPartidaBuscada = DataPartidaBuscadaIN;
     cod = DadosPesquisas.getQtdPesquisasTotais();;
-    DadosPesquisas.addQtdPesquisas(1);
   }
   public Pesquisa(Cidade IN, Data DataChegadaBuscadaIN, Data DataPartidaBuscadaIN){
     DestinoBuscado = IN;
     DataChegadaBuscada = DataChegadaBuscadaIN;
     DataPartidaBuscada = DataPartidaBuscadaIN;
     cod = DadosPesquisas.getQtdPesquisasTotais();;
-    DadosPesquisas.addQtdPesquisas(1);
   }
 
 

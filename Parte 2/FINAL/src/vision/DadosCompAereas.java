@@ -20,8 +20,7 @@ Salvar-se a no arquivo:
 public class DadosCompAereas{
 
 
-  private static CompAerea CompAereas[] = new CompAerea[0];
-  private static int qtd = 0;
+  private static ArrayList<CompAerea> CompAereas = new ArrayList<CompAerea>();
 
 
 
@@ -31,31 +30,26 @@ public class DadosCompAereas{
 
 
   public static int add(CompAerea X) {
-    if (VETOR.contem(CompAereas, X, qtd))
-      return -1;
-      CompAereas = VETOR.add(CompAereas, X, qtd);
-    qtd++;
+    if (DadosCompAereas.search(X.getCNPJ())!=null) return -1;
+    CompAereas.add(X);
     return 0;
   }
 
-  public int rem(CompAerea X) {
-    if(VETOR.contem(CompAereas, X, qtd)){
-      CompAereas = VETOR.remove(CompAereas, X, qtd);
-      qtd--;
-      return 0;
-    }
-    else return -1;
+  public static int rem(CompAerea X) {
+	 if (DadosCompAereas.search(X.getCNPJ())==null)return -1;
+	 CompAereas.remove(X);
+     return 0;
   }
 
-  public CompAerea search(String CNPJ_IN){
+  public static CompAerea search(String CNPJ_IN){
 
-    for(int i = 0; i < qtd; i++){
-      if(CompAereas[i].getCNPJ() == CNPJ_IN) return CompAereas[i];
+    for(int i = 0; i < CompAereas.size(); i++){
+      if(CompAereas.get(i).getCNPJ().compareToIgnoreCase(CNPJ_IN)==0) return CompAereas.get(i);
     }
     return null;
   }
 
-  public CompAerea[] getArray(){return CompAereas;}
+  private static ArrayList<CompAerea> getArray(){return CompAereas;}
 
 
 
@@ -64,12 +58,19 @@ public class DadosCompAereas{
 
 
   public static void commit() {
-    return;
-  } //TODO: função que coloca dados no banco;
+	  Persist.write(CompAereas, "coar.dat");
+  }
 
   public static boolean pull() {
-    return false;
-  } //TODO: função que puxa dados no banco;
+	  ArrayList<CompAerea> temp = (ArrayList<CompAerea>) Persist.read("coar.dat");
+	  if(temp == null) {
+		  return false;
+	  }
+	  else {
+		  CompAereas = temp;
+		  return true;
+	  }
+  }
 
 
 }

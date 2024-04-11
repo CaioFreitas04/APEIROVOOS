@@ -1,8 +1,7 @@
 package vision;
 import java.util.ArrayList;
-import java.io.Serializable;
 
-public class CompAerea implements Serializable {
+public class CompAerea {
 
   private String CNPJ;
   private String Nome_Oficial;

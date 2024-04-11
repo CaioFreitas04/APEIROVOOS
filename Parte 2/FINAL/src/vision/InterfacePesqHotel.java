@@ -84,7 +84,7 @@ public class InterfacePesqHotel extends JInternalFrame {
 		JbVoltar = new Button("Voltar");
 		JbVoltar.setBounds(57, 208, 76, 23);
 		getContentPane().add(JbVoltar);
-		JbPesq.addActionListener(tratar);
+		JbVoltar.addActionListener(tratar);
 
 	}
 	

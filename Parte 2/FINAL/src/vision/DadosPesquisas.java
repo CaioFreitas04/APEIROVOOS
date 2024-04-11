@@ -20,83 +20,92 @@ Salvar-se a no arquivo:
 public class DadosPesquisas{
 
 
-  private static Pesquisa Pesquisas[] = new Pesquisa[0];
-  private static int qtd = 0;
+  private static ArrayList<Pesquisa> Pesquisas = new ArrayList<Pesquisa>();
 
 
   public static void addPesquisas(Cidade Destino, Data DataChegadaBuscadaIN, Data DataPartidaBuscadaIN){
     Pesquisa X = new Pesquisa(Destino, DataChegadaBuscadaIN, DataPartidaBuscadaIN);
-    Pesquisas = VETOR.add(Pesquisas, X, qtd);
+    Pesquisas.add(X);
   }
   public static void addPesquisas(Hotel Destino, Data DataChegadaBuscadaIN, Data DataPartidaBuscadaIN){
     Pesquisa X = new Pesquisa(Destino, DataChegadaBuscadaIN, DataPartidaBuscadaIN);
-    Pesquisas = VETOR.add(Pesquisas, X, qtd);
+    Pesquisas.remove(X);
   }
 
 
-  public static int getQtdPesquisasTotais(){return qtd;}
-  public static void addQtdPesquisas(int IN){qtd += IN;}
+  public static int getQtdPesquisasTotais(){return Pesquisas.size();}
 
-  public static Pesquisa[] searchPesquisas_Hotel(Hotel IN){
+  
+  
+
+  public static ArrayList<Pesquisa> searchPesquisas_Hotel(Hotel IN){
     String teste = IN.getCNPJ();
-    Pesquisa ret[] = new Pesquisa[0];
-    int tamanhoRet = 0;
-    for(int i = 0; i < qtd; i++){
-      if(Pesquisas[i].getHotelBuscado().getCNPJ() == teste){
-          ret = VETOR.add(ret, Pesquisas[i], tamanhoRet);
-          tamanhoRet++;
-        }
-    }
-    return null;
-  }
-  public static Pesquisa[] searchPesquisas_Cidade(String teste){
-    Pesquisa ret[] = new Pesquisa[0];
-    int tamanhoRet = 0;
-    for(int i = 0; i < qtd; i++){
-      if(Pesquisas[i].getCidadeBuscada().getCid() == teste){
-        ret = VETOR.add(ret, Pesquisas[i], tamanhoRet);
-        tamanhoRet++;
-      }
-    }
-    return null;
-  }
-  public static Pesquisa[] searchPesquisas_DataChegada(Data IN){
-    Data teste;
-    Pesquisa ret[] = new Pesquisa[0];
-    int tamanhoRet = 0;
-    for(int i = 0; i < qtd; i++){
-      teste = Pesquisas[i].getDataChegadaBuscada();
-      if (teste == null) return null;
-      if(teste.getData('d') == IN.getData('d') && teste.getData('m') == IN.getData('m') && teste.getData('a') == IN.getData('a')){
-          ret = VETOR.add(ret, Pesquisas[i], tamanhoRet);
-          tamanhoRet++;
+    ArrayList<Pesquisa> ret = new ArrayList<Pesquisa>();
+    
+    for(int i = 0; i < Pesquisas.size(); i++){
+      if(Pesquisas.get(i).getHotelBuscado().getCNPJ().compareToIgnoreCase(teste)==0){
+    	  ret.add(Pesquisas.get(i));
         }
     }
     return ret;
   }
-  public static Pesquisa[] searchPesquisas_DataPartida(Data IN){
-    Data teste;
-    Pesquisa ret[] = new Pesquisa[0];
-    int tamanhoRet = 0;
-    for(int i = 0; i < qtd; i++){
-      teste = Pesquisas[i].getDataPartidaBuscada();
-      if (teste == null) return null;
-      if(teste.getData('d') == IN.getData('d') && teste.getData('m') == IN.getData('m') && teste.getData('a') == IN.getData('a')){
-        ret = VETOR.add(ret, Pesquisas[i], tamanhoRet);
-        tamanhoRet++;
-      }
+
+  public static ArrayList<Pesquisa> searchPesquisas_Cidade(Cidade IN){
+    String teste = IN.getCid();
+    ArrayList<Pesquisa> ret = new ArrayList<Pesquisa>();
+    
+    for(int i = 0; i < Pesquisas.size(); i++){
+      if(Pesquisas.get(i).getCidadeBuscada().getCid().compareToIgnoreCase(teste)==0){
+    	  ret.add(Pesquisas.get(i));
+        }
     }
     return ret;
   }
+
+  public static ArrayList<Pesquisa> searchPesquisas_DataCheg(Data IN){
+	  
+    ArrayList<Pesquisa> ret = new ArrayList<Pesquisa>();
+    Data t;
+    
+    for(int i = 0; i < Pesquisas.size(); i++){
+    	
+      t = Pesquisas.get(i).getDataChegadaBuscada();
+      if(t.getData('d') == IN.getData('d') && t.getData('m') == IN.getData('m') && t.getData('a') == IN.getData('a')){
+    	  ret.add(Pesquisas.get(i));
+        }
+    }
+    return ret;
+  }
+  public static ArrayList<Pesquisa> searchPesquisas_DataPart(Data IN){
+	  
+	    ArrayList<Pesquisa> ret = new ArrayList<Pesquisa>();
+	    Data t;
+	    
+	    for(int i = 0; i < Pesquisas.size(); i++){
+	    	
+	      t = Pesquisas.get(i).getDataPartidaBuscada();
+	      if(t.getData('d') == IN.getData('d') && t.getData('m') == IN.getData('m') && t.getData('a') == IN.getData('a')){
+	    	  ret.add(Pesquisas.get(i));
+	        }
+	    }
+	    return ret;
+	  }
 
 
   public static void commit() {
-    return;
-  } //TODO: função que coloca dados no banco;
+    Persist.write(Pesquisas, "pesq.dat");
+  }
 
   public static boolean pull() {
-    return false;
-  } //TODO: função que puxa dados no banco;
+    ArrayList<Pesquisa> temp = (ArrayList<Pesquisa>) Persist.read("pesq.dat");
+    if(temp == null) {
+    	return false;
+    }
+    else {
+    	Pesquisas = temp;
+    	return true;
+    }
+  } 
 
 
 }

@@ -1,9 +1,9 @@
 package vision;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class Aeroporto implements Serializable {
+public class Aeroporto{
 
   private int codigo;
   private String nome;

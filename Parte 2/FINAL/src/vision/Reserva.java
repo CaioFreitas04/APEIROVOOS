@@ -1,7 +1,5 @@
 package vision;
-import java.io.Serializable;
-
-public class Reserva implements Serializable {
+public class Reserva {
   private Quarto quarto_escolhido;
   private Data diaCheckin;
   private Data diaCheckout;

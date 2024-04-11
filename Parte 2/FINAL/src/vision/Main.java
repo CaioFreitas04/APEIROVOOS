@@ -5,9 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import SetData;
-import codigos.Main;
+import DadosClientes.java;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -20,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 
 public class Main extends JFrame {
+	
+	
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -31,7 +31,28 @@ public class Main extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
+		//Codigos injetados:
+		
+		Data dh = new Data(1, 1, 2004);
+		Data dn = new Data(1, 1, 1245);
+		Cliente DevMod = new Cliente("Diogo", "12515385680", "minha casa", dn, dh, "kanekoSola@gmail.com");
+		DadosClientes.add(DevMod);
+		
+		Cidade c1 = new Cidade("Uberlandia", "Brazil", +4);
+		Cidade c2 = new Cidade("Araguari", "Brazil", +4);
+		Cidade c3 = new Cidade("Paris", "Europa", 0);
+		DadosCidades.add(c1);
+		DadosCidades.add(c2);
+		DadosCidades.add(c3);
+		
+		Cidade Teste = DadosCidades.search("Paris");
+		
+		System.out.println(Teste.getCid());
+		
+		//Fim dos codigos injetados.w
 		EventQueue.invokeLater(new Runnable() {
+			
 			public void run() {
 				try {
 					frame = new Main();
@@ -118,7 +139,6 @@ public class Main extends JFrame {
 				
 			}
 			if(e.getSource() == JmiAirline2) {
-				dispose();
 				JOptionPane.showMessageDialog(null,"Login de Airline em Desenvolvimento","Desenvolvimento",JOptionPane.INFORMATION_MESSAGE);
 			}
 			

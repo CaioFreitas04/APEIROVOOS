@@ -1,7 +1,6 @@
 package vision;
-import java.io.Serializable;
 
-public class Compra implements Serializable {
+public class Compra {
 	private double total;
 	private int qtd;
 	private Cliente cli;

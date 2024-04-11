@@ -115,4 +115,15 @@ public class BancoCliente {
 
     }
     
+    public static boolean clearDB() {
+    	try {
+			PreparedStatement pstmt = conn.prepareStatement("DELETE * FROM clientes");
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			logError(e.getMessage());
+			return false;
+		}
+    }
+    
 }

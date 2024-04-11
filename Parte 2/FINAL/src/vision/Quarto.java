@@ -1,8 +1,7 @@
 package vision;
 import java.util.ArrayList;
-import java.io.Serializable;
 
-public class Quarto implements Serializable {
+public class Quarto {
 
   private double valorDiaria;
   private double valorDesconto;

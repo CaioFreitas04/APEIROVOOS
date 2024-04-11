@@ -1,7 +1,5 @@
 package vision;
-import java.io.Serializable;
-
-public class Passagem implements Serializable {
+public class Passagem {
 	private voo Voo;
 	private double preco;
 

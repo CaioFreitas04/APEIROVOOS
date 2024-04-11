@@ -84,12 +84,12 @@ public class Client_ApeiroVoos extends JFrame {
 				JDeskTopAP.add(tela);
 				tela.setVisible(true);
 			}
-			/*if(e.getSource() == JmiRemCar) {
-				
+			if(e.getSource() == JmiRemCar) {
+				InterfaceRemCompra tela = new InterfaceRemCompra(usu);
 				JDeskTopAP.add(tela);
 				tela.setVisible(true);
 			}
-			if(e.getSource() == JmiConfCar) {
+			/*if(e.getSource() == JmiConfCar) {
 				
 				JDeskTopAP.add(tela);
 				tela.setVisible(true);

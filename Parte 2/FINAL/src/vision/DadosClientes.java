@@ -1,5 +1,6 @@
 package vision;
  import java.util.ArrayList;
+ import java.io.*;
 
 /*
 
@@ -35,7 +36,7 @@ public class DadosClientes{
 		int max = Clientes.size();
 	    for(int i = 0; i < max; i++){
 	    	test = Clientes.get(i);
-	    	if(test.getCPF() == CPF_IN) {
+	    	if(test.getCPF().compareToIgnoreCase(CPF_IN)==0) {
 	    		Clientes.remove(i);
 	    		return 0;
 	    	}
@@ -65,12 +66,50 @@ public class DadosClientes{
 
   
   public static void commit() {
-    return;
-  } //TODO: função que coloca dados no banco;
+	  Persist.write(Clientes, "clnt.dat");
+	  BancoCliente.connectToBank();
+	  if(BancoCliente.clearDB()) {
+	  	  for(int i = 0; i < Clientes.size(); i++) {
+			  BancoCliente.writeCliente(Clientes.get(i));
+		  }
+	  }
+  }
 
   public static boolean pull() {
-    return false;
-  } //TODO: função que puxa dados no banco;
-
+	  ArrayList<Cliente> temp = (ArrayList<Cliente>) Persist.read("clnt.dat");
+	  if(temp == null) {
+		  return false;
+	  }
+	  else {
+		  Clientes = temp;
+		  return true;
+	  }
+  }
+  
+  public static void generateDBReport() {
+	  //pegando clientes do banco de dados;
+	  ArrayList<Cliente> temp = BancoCliente.fetchClientes();
+	  //preparando para escrita;
+	  BufferedWriter fp = null;
+	  try {
+		  fp = new BufferedWriter(new FileWriter(new File("relatorio.txt")));
+		  for(int i = 0; i < temp.size(); i++) {
+			  String tnome = temp.get(i).getNome();
+			  String tcpf  = temp.get(i).getCPF();
+			  String taddr = temp.get(i).getAddr();
+			  boolean tvip = temp.get(i).isVIP();
+			  int tcompras = temp.get(i).getCompras();
+			  String tmail = temp.get(i).getEmail();
+			  
+			  fp.write(tnome + "\t-\t" + tcpf + "\tEMAIL: " + tmail + "\tEND:" + taddr + "\tVIP?: " + tvip + "\tCOMPRAS: " + tcompras);
+			  fp.newLine();
+		  }
+		  fp.flush();
+		  fp.close();
+	  }
+	  catch(IOException e) {
+		  BancoCliente.logError(e.getMessage());
+	  }
+  }
 
 }

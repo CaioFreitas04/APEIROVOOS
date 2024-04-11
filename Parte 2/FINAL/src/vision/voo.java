@@ -1,7 +1,5 @@
 package vision;
-import java.io.Serializable;
-
-public class voo implements Serializable {
+public class voo {
 
   private static int qtdVoos = 0;
   private final Trecho rota;

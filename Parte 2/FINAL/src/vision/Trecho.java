@@ -1,10 +1,9 @@
 package vision;
 
 import java.util.ArrayList;
-import java.io.Serializable;
 
 
-public class Trecho implements Serializable {
+public class Trecho{
 
   private Aeroporto destino;
   private Aeroporto origem;

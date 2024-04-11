@@ -1,8 +1,5 @@
 package vision;
-
-import java.io.Serializable;
-
-public class Hora implements Serializable {
+public class Hora {
 
   private int h, m, s;
 

@@ -16,7 +16,8 @@ public class Cliente extends Pessoa {
 	private int compras;
 	private boolean validCPF;
 	private String email;
-	private ArrayList compraArray;
+	private ArrayList<Reserva> Reservas;
+	private ArrayList<Passagem> Passagems;
 
 	public Cliente() {
 		this.validCPF = false;
@@ -49,7 +50,23 @@ public class Cliente extends Pessoa {
 
 		this.email = emailin;
 
-		compraArray = new ArrayList();
+		Reservas = new ArrayList<Reserva>();
+		Passagems = new ArrayList<Passagem>();
+	}
+	
+	//construtor usado exclusivamente pelo banco de dados;
+	public Cliente(String nomein, String CPFin, String addrin, boolean VIPin, int comprasin, String emailin) {
+		this.setNome(nomein);
+		
+		this.setCPF(CPFin);
+		
+		this.setAddr(addrin);
+		
+		this.VIP = VIPin;
+		
+		this.compras = comprasin;
+		
+		this.email = emailin;
 	}
 	
 	public boolean resetCPF(String CPFin) {
@@ -71,13 +88,13 @@ public class Cliente extends Pessoa {
 	public void adicionarAoCarrinho(Reserva in) {	//para reservas;
 		if(!validCPF)
 			return;
-		this.compraArray.add(in);
+		this.Reservas.add(in);
 	}
 
 	public void adicionarAoCarrinho(Passagem in) {	//para passagens;
 		if(!validCPF)
 			return;
-		this.compraArray.add(in);
+		this.Passagems.add(in);
 	}
 
 	public void comprar() {
@@ -110,5 +127,23 @@ public class Cliente extends Pessoa {
 	public String getEmail() {
 		return this.email;
 	}
+	
+	public int getCompras() {
+		return this.compras;
+	}
 
+	public ArrayList<Reserva>getReservas(){
+		return Reservas;
+	}
+	public ArrayList<Reserva>getPassagens(){
+		return Reservas;
+	}
+
+	/*public Hotel pesquisarHotel(ArrayList<Hotel> hotelList, Hotel hotelIn) {
+		if(!hotelList.contains(hotelIn)) {
+			return null;
+		}
+		else 
+			return hotelList.get(hotelIn);
+	}*/
 }

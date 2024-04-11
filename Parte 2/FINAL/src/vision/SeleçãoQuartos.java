@@ -89,6 +89,7 @@ public class SeleçãoQuartos extends JFrame {
 		
 		JmiStandart3 = new JMenuItem("Para três Pessoas");
 		JmStandart.add(JmiStandart3);
+		JmiStandart3.addActionListener(tratar);
 		
 		lblValorDiaria = new JLabel("");
 		lblValorDiaria.setFont(new Font("Arial", Font.BOLD, 15));

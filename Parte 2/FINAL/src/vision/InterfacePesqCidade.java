@@ -33,14 +33,16 @@ public class InterfacePesqCidade extends JInternalFrame {
 		JLabel lblPesqCid = new JLabel("Pesquise a Cidade que Gostaria de ir");
 		lblPesqCid.setBounds(24, 27, 222, 16);
 		getContentPane().add(lblPesqCid);
-		String CidadeName = textField_CidadeNome.getText();
-		
-		CidadeY = DadosCidades.buscarCidade(CidadeName, null, null);
 		
 		
 		Button JbPesq = new Button("Pesquisar hoteis locais");
 		JbPesq.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println(textField_CidadeNome.getText());
+				
+				CidadeY = DadosCidades.search(textField_CidadeNome.getText());
+		        if(CidadeY != null) DadosPesquisas.addPesquisas(CidadeY, null, null);
 				InterfacePesqHotelLoc tela = new InterfacePesqHotelLoc(CidadeY,ClienteX);
 				tela.setVisible(true);
 				dispose();
@@ -63,6 +65,11 @@ public class InterfacePesqCidade extends JInternalFrame {
 		Button JbPesq_1 = new Button("Comprar passagens de ida");
 		JbPesq_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println(textField_CidadeNome.getText());
+				
+				CidadeY = DadosCidades.search(textField_CidadeNome.getText());
+		        if(CidadeY != null) DadosPesquisas.addPesquisas(CidadeY, null, null);
 				InterfacePesqVoo tela = new InterfacePesqVoo(CidadeY,ClienteX);
 				tela.setVisible(true);
 				dispose();

@@ -298,6 +298,11 @@ public class VETOR {
   public static Pesquisa[] add(Pesquisa vet[], Pesquisa IN, int tamanhoVET) {
 
     Pesquisa vet2[] = new Pesquisa[tamanhoVET + 1];
+    
+    if(tamanhoVET == 0) {
+    	vet2[0]=IN;
+    	return vet2;
+    }
 
     for (int i = 0; i < tamanhoVET; i++)
       vet2[i] = vet[i];
@@ -309,9 +314,15 @@ public class VETOR {
 
   public static Pesquisa[] remove(Pesquisa vet[], Pesquisa IN, int tamanhoVET) {
 
-    Pesquisa vet2[] = new Pesquisa[tamanhoVET - 1];
+    Pesquisa vet2[];
     boolean achou = false;
 
+    if(tamanhoVET <2) {
+    	vet2 = new Pesquisa[0];
+    	return vet2;
+    }else vet2 = new Pesquisa[tamanhoVET - 1];
+    
+    
     int i = 0;
     int j = 0;
 
@@ -336,6 +347,9 @@ public class VETOR {
   }
   public static boolean contem(Pesquisa vet[], Pesquisa IN, int tamanhoVET) {
 
+	if(tamanhoVET == 0) {
+	    return false;
+	}
     int i = 0;
     while (i < tamanhoVET) {
 

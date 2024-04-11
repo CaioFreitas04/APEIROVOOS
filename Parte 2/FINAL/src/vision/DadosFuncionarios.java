@@ -20,8 +20,7 @@ Salvar-se a no arquivo:
 public class DadosFuncionarios{
 
 
-  private static Funcionario Funcionarios[] = new Funcionario[0];
-  private static int qtd = 0;
+  private static ArrayList<Funcionario> Funcionarios = new ArrayList<Funcionario>();
 
 
 
@@ -30,32 +29,27 @@ public class DadosFuncionarios{
 
 
 
-  public int add(Funcionario X) {
-    if (VETOR.contem(Funcionarios, X, qtd))
-      return -1;
-      Funcionarios = VETOR.add(Funcionarios, X, qtd);
-    qtd++;
+  public static int add(Funcionario X) {
+    if (DadosFuncionarios.search(X.getCPF())!=null) return -1;
+    Funcionarios.add(X);
     return 0;
   }
 
-  public int rem(Funcionario X) {
-    if(VETOR.contem(Funcionarios, X, qtd)){
-      Funcionarios = VETOR.remove(Funcionarios, X, qtd);
-      qtd--;
-      return 0;
-    }
-    else return -1;
+  public static int rem(Funcionario X) {
+	 if (DadosFuncionarios.search(X.getCPF())==null)return -1;
+	 Funcionarios.remove(X);
+     return 0;
   }
 
-  public Funcionario search(String CPF_IN){
+  public static Funcionario search(String CNPJ_IN){
 
-    for(int i = 0; i < qtd; i++){
-      if(Funcionarios[i].getCPF() == CPF_IN) return Funcionarios[i];
+    for(int i = 0; i < Funcionarios.size(); i++){
+      if(Funcionarios.get(i).getCPF().compareToIgnoreCase(CNPJ_IN)==0) return Funcionarios.get(i);
     }
     return null;
   }
 
-  public Funcionario[] getArray(){return Funcionarios;}
+  private static ArrayList<Funcionario> getArray(){return Funcionarios;}
 
 
 
@@ -64,12 +58,17 @@ public class DadosFuncionarios{
 
 
   public static void commit() {
-    return;
-  } //TODO: função que coloca dados no banco;
+	  Persist.write(Funcionarios, "func.dat");
+  }
 
   public static boolean pull() {
-    return false;
-  } //TODO: função que puxa dados no banco;
-
-
+	  ArrayList<Funcionario> temp = (ArrayList<Funcionario>) Persist.read("func.dat");
+	  if(temp == null) {
+		  return false;
+	  }
+	  else {
+		  Funcionarios = temp;
+		  return true;
+	  }
+  } 
 }
