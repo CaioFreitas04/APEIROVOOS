@@ -136,7 +136,7 @@ public class Cliente extends Pessoa {
 		return Reservas;
 	}
 	public ArrayList<Passagem>getPassagens(){
-		return Reservas;
+		return Passagems;
 	}
 
 	/*public Hotel pesquisarHotel(ArrayList<Hotel> hotelList, Hotel hotelIn) {
