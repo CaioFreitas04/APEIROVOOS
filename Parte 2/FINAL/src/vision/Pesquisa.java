@@ -1,5 +1,7 @@
 package vision;
-public class Pesquisa{
+import java.io.Serializable;
+
+public class Pesquisa implements Serializable{
 
   private Hotel HotelBuscado;
   private Cidade DestinoBuscado;
