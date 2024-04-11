@@ -1,5 +1,8 @@
 package vision;
-public class Lugar {
+
+import java.io.Serializable;
+
+public class Lugar implements Serializable {
   protected String Continente;
   protected int FusoHorarioD;
   protected int FusoHorarioH;
