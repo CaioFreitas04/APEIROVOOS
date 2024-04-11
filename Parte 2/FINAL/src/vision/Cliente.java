@@ -135,7 +135,7 @@ public class Cliente extends Pessoa {
 	public ArrayList<Reserva>getReservas(){
 		return Reservas;
 	}
-	public ArrayList<Reserva>getPassagens(){
+	public ArrayList<Passagem>getPassagens(){
 		return Reservas;
 	}
 
